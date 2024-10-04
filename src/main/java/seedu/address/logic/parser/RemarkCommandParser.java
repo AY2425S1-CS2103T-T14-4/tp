@@ -11,14 +11,20 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Remark;
 
 /**
- * Parses input arguments and creates a new RemarkCommand object.
+ * Parses input arguments and creates a new RemarkCommand object
  */
 public class RemarkCommandParser implements Parser<RemarkCommand> {
 
+    /**
+     * Parses {@code userInput} into a command and returns it.
+     *
+     * @param userInput the input of the user
+     * @throws ParseException if {@code userInput} does not conform the expected format
+     */
     @Override
-    public RemarkCommand parse(String args) throws ParseException {
-        requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+    public RemarkCommand parse(String userInput) throws ParseException {
+        requireNonNull(userInput);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput,
                 PREFIX_REMARK);
 
         Index index;
@@ -29,9 +35,9 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
                     RemarkCommand.MESSAGE_USAGE), ive);
         }
 
-        String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");
+        Remark remark = new Remark(argMultimap.getValue(PREFIX_REMARK).orElse(""));
 
-        return new RemarkCommand(index, new Remark(remark));
+        return new RemarkCommand(index, remark);
     }
 
 }
