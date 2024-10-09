@@ -83,7 +83,7 @@ public class AddressBookParser {
             return new RemarkCommandParser().parse(arguments);
 
         case RemarkCommandTut.COMMAND_WORD:
-            return new RemarkCommandTut();
+            return new RemarkCommandTutParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
