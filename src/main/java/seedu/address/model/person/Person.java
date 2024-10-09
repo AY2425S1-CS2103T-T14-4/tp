@@ -26,11 +26,12 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
 
     private final Remark remark;
+    private final RemarkTut remarkTut;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Remark remark) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Remark remark, RemarkTut remarkTut) {
         requireAllNonNull(name, phone, email, address, tags, remark);
         this.name = name;
         this.phone = phone;
@@ -38,6 +39,7 @@ public class Person {
         this.address = address;
         this.tags.addAll(tags);
         this.remark = remark;
+        this.remarkTut = remarkTut;
     }
 
     public Name getName() {
@@ -67,6 +69,7 @@ public class Person {
     public Remark getRemark() {
         return remark;
     }
+    public RemarkTut getRemarkTut() { return remarkTut;}
 
     /**
      * Returns true if both persons have the same name.
@@ -101,7 +104,8 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && tags.equals(otherPerson.tags)
+                && remarkTut.equals(otherPerson.remarkTut);
     }
 
     @Override
