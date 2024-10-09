@@ -5,6 +5,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.RemarkCommandTut;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.RemarkTut;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -20,7 +21,7 @@ public class RemarkCommandTutParser implements Parser<RemarkCommandTut> {
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommandTut.MESSAGE_USAGE), ive);
         }
-        String remark = argMultimap.getValue(PREFIX_REMARK).orElse("");
+        RemarkTut remark = new RemarkTut(argMultimap.getValue(PREFIX_REMARK).orElse(""));
         return new RemarkCommandTut(index, remark);
     }
 }

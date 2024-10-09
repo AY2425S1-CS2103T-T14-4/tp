@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.RemarkTut;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -20,13 +21,13 @@ public class RemarkCommandTut extends Command {
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
 
     private final Index index;
-    private final String remark;
+    private final RemarkTut remark;
 
     /**
      * @param index of the person in the filtered person list to edit the remark
      * @param remark of the person to be updated to
      */
-    public RemarkCommandTut(Index index, String remark) {
+    public RemarkCommandTut(Index index, RemarkTut remark) {
         requireAllNonNull(index, remark);
 
         this.index = index;
