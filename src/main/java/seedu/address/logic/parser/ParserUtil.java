@@ -15,7 +15,7 @@ import seedu.address.model.person.Income;
 import seedu.address.model.person.Job;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tier.Tier;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -133,24 +133,24 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static Tier parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Tier.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tier.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Tier(trimmedTag);
     }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<Tier> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final Set<Tier> tierSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            tierSet.add(parseTag(tagName));
         }
-        return tagSet;
+        return tierSet;
     }
 }

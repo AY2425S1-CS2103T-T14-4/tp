@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -22,7 +21,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tier.Tier;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -53,10 +52,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Job job = ParserUtil.parseJob(argMultimap.getValue(PREFIX_JOB).get());
         Income income = ParserUtil.parseIncome(argMultimap.getValue(PREFIX_INCOME).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Tier tier = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).orElse("NA"));
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
-        Person person = new Person(name, phone, email, address, job, income, tagList, remark);
-
+        Person person = new Person(name, phone, email, address, job, income, tier, remark);
         return new AddCommand(person);
     }
 

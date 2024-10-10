@@ -47,8 +47,9 @@ public class Messages {
                 .append(person.getJob())
                 .append("; Income: ")
                 .append(person.getIncome())
-                .append("; Tags: ");
-        person.getTags().forEach(builder::append);
+                .append("; Tier: ")
+                .append(person.getTier());
+                .forEach(builder::append);
         return builder.toString();
     }
 

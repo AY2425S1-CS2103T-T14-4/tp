@@ -6,7 +6,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "job": "Student",
     "income": "234",
-    "tagged": [ "friends" ],
+    "tagged": "BRONZE",
     "remark" : "She is stingy"
   }, {
     "name": "Alice Pauline",

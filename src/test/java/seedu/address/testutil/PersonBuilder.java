@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
@@ -11,9 +8,11 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.tier.Tier;
 
+/**
+ * A utility class to help with building Person objects.
+ */
 /**
  * A utility class to help with building Person objects.
  */
@@ -25,6 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_JOB = "Engineer";
     public static final int DEFAULT_INCOME = 0;
+    public static final String DEFAULT_TIER = "NA";
     public static final String DEFAULT_REMARK = "";
 
     private Name name;
@@ -33,7 +33,7 @@ public class PersonBuilder {
     private Address address;
     private Job job;
     private Income income;
-    private Set<Tag> tags;
+    private Tier tier;
     private Remark remark;
 
     /**
@@ -46,7 +46,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         job = new Job(DEFAULT_JOB);
         income = new Income(DEFAULT_INCOME);
-        tags = new HashSet<>();
+        tier = new Tier(DEFAULT_TIER);
         remark = new Remark(DEFAULT_REMARK);
     }
 
@@ -60,7 +60,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         job = personToCopy.getJob();
         income = personToCopy.getIncome();
-        tags = new HashSet<>(personToCopy.getTags());
+        tier = personToCopy.getTier();
         remark = personToCopy.getRemark();
     }
 
@@ -75,8 +75,8 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withTiers(String tag) {
+        this.tier = new Tier(tag);
         return this;
     }
 
@@ -131,7 +131,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, job, income, tags, remark);
+        return new Person(name, phone, email, address, job, income, tier, remark);
     }
 
 }

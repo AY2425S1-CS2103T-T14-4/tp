@@ -2,13 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tier.Tier;
 
 /**
  * Represents a Person in the address book.
@@ -23,27 +20,28 @@ public class Person {
 
     // Data fields
     private final Address address;
+
     private final Job job;
 
-    private final Set<Tag> tags = new HashSet<>();
-
+    private final Income income
+      
+    private final Tier tier;
+  
     private final Remark remark;
-
-    private final Income income;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Job job, Income income,
-                  Set<Tag> tags, Remark remark) {
-        requireAllNonNull(name, phone, email, address, tags, remark);
+                  Tier tier, Remark remark) {
+        requireAllNonNull(name, phone, email, address, tier, remark);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.job = job;
         this.income = income;
-        this.tags.addAll(tags);
+        this.tier = tier;
         this.remark = remark;
     }
 
@@ -73,8 +71,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Tier getTier() {
+        return tier;
     }
 
     public Remark getRemark() {
@@ -122,7 +120,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, job, tags);
+        return Objects.hash(name, phone, email, address, job, tier);
     }
 
     @Override
@@ -134,7 +132,7 @@ public class Person {
                 .add("address", address)
                 .add("job", job)
                 .add("income", income)
-                .add("tags", tags)
+                .add("tier", tier)
                 .add("remark", remark)
                 .toString();
     }

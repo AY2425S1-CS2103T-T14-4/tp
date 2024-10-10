@@ -18,7 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tier.Tier;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -31,8 +31,8 @@ public class ParserUtilTest {
     private static final String VALID_PHONE = "91234567";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TAG_1 = "BRONZE";
+    private static final String VALID_TAG_2 = "SILVER";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -160,15 +160,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+        Tier expectedTier = new Tier(VALID_TAG_1);
+        assertEquals(expectedTier, ParserUtil.parseTag(VALID_TAG_1));
     }
 
     @Test
     public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
         String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+        Tier expectedTier = new Tier(VALID_TAG_1);
+        assertEquals(expectedTier, ParserUtil.parseTag(tagWithWhitespace));
     }
 
     @Test
@@ -188,9 +188,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Set<Tier> actualTierSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        Set<Tier> expectedTierSet = new HashSet<Tier>(Arrays.asList(new Tier(VALID_TAG_1), new Tier(VALID_TAG_2)));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertEquals(expectedTierSet, actualTierSet);
     }
 }

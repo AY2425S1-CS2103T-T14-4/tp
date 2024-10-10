@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -61,9 +59,7 @@ public class PersonCard extends UiPart<Region> {
         job.setText(person.getJob().value);
         income.setText(person.getIncome().toString());
         remark.setText(person.getRemark().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        tags.getChildren().add(new Label(person.getTier().tagName.toString()));
     }
 
 }

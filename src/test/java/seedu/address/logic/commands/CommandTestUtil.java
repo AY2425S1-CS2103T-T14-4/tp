@@ -25,6 +25,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 /**
  * Contains helper methods for testing commands.
  */
+/**
+ * Contains helper methods for testing commands.
+ */
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
@@ -35,13 +38,12 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-
     public static final String VALID_JOB_AMY = "Teacher";
     public static final String VALID_JOB_BOB = "Developer";
     public static final String VALID_INCOME_AMY = "999999999";
     public static final String VALID_INCOME_BOB = "9";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TIER_REJECT = "REJECT";
+    public static final String VALID_TIER_GOLD = "GOLD";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -55,9 +57,8 @@ public class CommandTestUtil {
     public static final String JOB_DESC_BOB = " " + PREFIX_JOB + VALID_JOB_BOB;
     public static final String INCOME_DESC_AMY = " " + PREFIX_INCOME + VALID_INCOME_AMY;
     public static final String INCOME_DESC_BOB = " " + PREFIX_INCOME + VALID_INCOME_BOB;
-
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_REJECT = " " + PREFIX_TAG + VALID_TIER_REJECT;
+    public static final String TAG_DESC_GOLD = " " + PREFIX_TAG + VALID_TIER_GOLD;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -81,14 +82,14 @@ public class CommandTestUtil {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withJob(VALID_JOB_AMY).withIncome(Integer.parseInt(VALID_INCOME_AMY))
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTiers(VALID_TIER_GOLD).build();
 
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withJob(VALID_JOB_BOB).withIncome(Integer.parseInt(VALID_INCOME_BOB))
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTiers(VALID_TIER_REJECT).build();
     }
-
+    
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
