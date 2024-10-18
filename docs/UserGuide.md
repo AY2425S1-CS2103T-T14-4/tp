@@ -265,8 +265,9 @@ This feature allows users to update the details of an existing customer in the d
 This feature allows users to search for customers by specific details such as name, address, email, phone number, job title, or remarks. 
 
 **How to Use It:**  
-To perform a search, use the `filter` command followed by one or more flags (indicating the fields to search) and the corresponding search terms. 
- Searches are **case-insensitive** and use [**substring-matching**](#substring-matching), **except for Tier**, which must start with the specified substring.
+To perform a search, use the `filter` command followed by one or more flags (indicating the fields to search) and the corresponding search terms.
+
+Searches are **case-insensitive** and use [**substring-matching**](#substring-matching), **except for [Tier](#filtering-by-tier) and [Income](#filtering-by-income)**, which have their own specific matching criteria detailed below.
 
 - **Command Format:** 
   ```
@@ -288,10 +289,10 @@ To perform a search, use the `filter` command followed by one or more flags (ind
 
 #### Parameters
 
-| Parameter   | Expected Format                                                                                              | Explanation                                                                                     |
-|-------------|--------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
-| FLAG        | Refer to the list of supported flags detailed below.                                                         | Identifies the field to search (e.g., `n/` for name, `j/` for job).                             |                                                                          |
-| SEARCH TERM | Refer to the syntax constraints in the [parameter subsection of the `add` command](#add-command-parameters). | The value to search for in the specified field (e.g., "doctor" for job, "TAN LESHEW" for name). |
+| Parameter   | Expected Format                                                                                                                                                                                                                                                       | Explanation                                                                                             |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| FLAG        | Refer to the list of supported flags detailed below.                                                                                                                                                                                                                  | Identifies the field to search. <br/><br/> e.g., `n/` for name, `j/` for job.                           |                                                                          |
+| SEARCH TERM | Follows the syntax for [each field's expected input](#add-command-parameters). <br/><br/>**Income** requires a numeric value with a comparison operator (`=`, `>`, `<`), while **Tier** allows for partial (prefix) matching. Other fields follow substring matching. | The value to search for in the specified field. <br/><br/> e.g., `doctor` for job, `>5000` for income). |
 
 #### Supported flags:
 - `n/` for Name
@@ -305,6 +306,19 @@ To perform a search, use the `filter` command followed by one or more flags (ind
 #### Substring Matching:
 - Substring matching is used for searches, meaning that the search term must match a part of the field in the same order as it appears in the customer record.
 - For instance, if a customer’s name is `Gordon Moore`, the search term `Gordon`, `Moore`, or `Gordon Moore` will match, but `Moore Gordon` will not.
+
+#### Filtering By Tier
+- **Prefix Matching:** Tier searches use **prefix matching**, meaning the search term must match the beginning of the tier exactly. 
+  - If a customer has a tier labeled `Gold`, a search for `t/ G` or `t/ Gold` will match, but `t/ ld` or `t/ Gold Premium` will not.
+
+#### Filtering By Income
+- **Comparison Operators:** Filtering by income allows numeric comparisons using operators `=`, `>`, or `<` to find customers whose income meets certain criteria.
+- **Equal to (`=`):** Use `=` to find customers with a specific income.  
+  - `i/ =5000` will match customers with an income of exactly 5000.
+- **Greater than (`>`):** Use `>` to find customers with an income higher than the specified threshold. 
+  - `i/ >5000` will match customers with incomes greater than 5000.
+- **Less than (`<`):** Use `<` to find customers with an income lower than the specified threshold.
+  - `i/ <5000` will match customers with incomes below 5000.
 
 #### What to Expect
 - **If Successful:**

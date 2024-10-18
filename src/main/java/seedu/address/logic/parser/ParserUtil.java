@@ -13,6 +13,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.tier.Tier;
+import seedu.address.model.util.IncomeComparisonOperator;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -141,10 +142,25 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String remark} into a {@code Remark}.
+     * Leading and trailing whitespaces are trimmed.
+     *
+     * @throws ParseException if the given {@code remark} is invalid.
+     */
+    public static Remark parseNewRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        if (!Remark.isValidRemark(trimmedRemark)) {
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
+        }
+        return new Remark(trimmedRemark);
+    }
+
+    /**
+     * Parses a {@code String tier} into a {@code Tier}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code tier} is invalid.
      */
     public static Tier parseTier(String tag) throws ParseException {
         requireNonNull(tag);
@@ -159,19 +175,19 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String remark} into a {@code Remark}.
-     * Leading and trailing whitespaces are trimmed.
+     * Parses a {@code String operator} into a {@code IncomeComparisonOperator}.
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code remark} is invalid.
+     * @throws ParseException if the given {@code operator} is invalid.
      */
-    public static Remark parseNewRemark(String remark) throws ParseException {
-        requireNonNull(remark);
-        String trimmedRemark = remark.trim();
-        if (!Remark.isValidRemark(trimmedRemark)) {
-            System.out.println("exception thrown");
-            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
+    public static IncomeComparisonOperator parseIncomeComparisonOperator(String operator) throws ParseException {
+        requireNonNull(operator);
+        String trimmedOperator = operator.trim();
+        if (!IncomeComparisonOperator.isValidComparisonOperator(trimmedOperator)) {
+            System.out.println(("HERE"));
+            throw new ParseException(IncomeComparisonOperator.MESSAGE_CONSTRAINTS);
         }
-        return new Remark(trimmedRemark);
+        return new IncomeComparisonOperator(trimmedOperator);
     }
 
 }

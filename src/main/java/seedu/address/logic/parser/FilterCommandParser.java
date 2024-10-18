@@ -23,11 +23,13 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.AddressContainsSubstringPredicate;
 import seedu.address.model.person.predicates.CombinedPredicate;
 import seedu.address.model.person.predicates.EmailContainsSubstringPredicate;
+import seedu.address.model.person.predicates.IncomeComparisonPredicate;
 import seedu.address.model.person.predicates.JobContainsSubstringPredicate;
 import seedu.address.model.person.predicates.NameContainsSubstringPredicate;
 import seedu.address.model.person.predicates.PhoneContainsSubstringPredicate;
 import seedu.address.model.person.predicates.RemarkContainsSubstringPredicate;
 import seedu.address.model.person.predicates.TierStartsWithSubstringPredicate;
+import seedu.address.model.util.IncomeComparisonOperator;
 
 /**
  * Parses input arguments and creates a new FilterCommand object
@@ -109,6 +111,15 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         if (argMultimap.getValue(PREFIX_JOB).isPresent()) {
             String substring = ParserUtil.parseJob(argMultimap.getValue(PREFIX_JOB).get()).value;
             predicates.add(new JobContainsSubstringPredicate(substring));
+        }
+        if (argMultimap.getValue(PREFIX_INCOME).isPresent()) {
+            String operatorAndIncome = argMultimap.getValue(PREFIX_INCOME).get();
+
+            IncomeComparisonOperator operator =
+                    ParserUtil.parseIncomeComparisonOperator(operatorAndIncome.substring(0, 1));
+            int income = ParserUtil.parseIncome(operatorAndIncome.substring(1)).value;
+
+            predicates.add(new IncomeComparisonPredicate(operator, income));
         }
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
             String substring = ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get()).value;
