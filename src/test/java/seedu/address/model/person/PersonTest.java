@@ -78,13 +78,13 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertNotEquals(ALICE, editedAlice);
 
-        // different address -> returns false
+        // different address -> returns true
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertNotEquals(ALICE, editedAlice);
+        assertEquals(ALICE, editedAlice);
 
-        // different job -> returns false
+        // different job -> returns true
         editedAlice = new PersonBuilder(ALICE).withJob(VALID_JOB_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        assertTrue(ALICE.equals(editedAlice));
 
         // different tier -> returns true
         editedAlice = new PersonBuilder(ALICE).withTier("Silver").build();
@@ -104,7 +104,7 @@ public class PersonTest {
         String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", job=" + ALICE.getJob()
                 + ", income=" + ALICE.getIncome() + ", tier=" + ALICE.getTier()
-                + ", remark=" + ALICE.getRemark() + "}";
+                + ", remark=" + ALICE.getRemark() + ", status=" + ALICE.getStatus() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

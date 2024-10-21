@@ -77,8 +77,9 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getAddress().orElse(null) + ", job="
                 + editPersonDescriptor.getJob().orElse(null) + ", income="
                 + editPersonDescriptor.getIncome().orElse(null) + ", tier="
-                + editPersonDescriptor.getTiers().orElse(null) + ", remark="
-                + editPersonDescriptor.getNewRemark().orElse(null) + "}";
+                + editPersonDescriptor.getTier().orElse(null) + ", remark="
+                + editPersonDescriptor.getNewRemark().orElse(null) + ", status="
+                + editPersonDescriptor.getStatus().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
     }
 }

@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEW_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIER;
 
 import seedu.address.commons.util.ToStringBuilder;
@@ -32,7 +33,8 @@ public class AddCommand extends Command {
             + PREFIX_JOB + "JOB "
             + PREFIX_INCOME + "INCOME "
             + "[" + PREFIX_TIER + "TIER]...\n"
-            + "[" + PREFIX_NEW_REMARK + "NEW REMARK]...\n"
+            + "[" + PREFIX_NEW_REMARK + "NEW REMARK]..."
+            + "[" + PREFIX_STATUS + "STATUS]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -41,7 +43,8 @@ public class AddCommand extends Command {
             + PREFIX_JOB + "doctor "
             + PREFIX_INCOME + "300 "
             + PREFIX_TIER + "GOLD "
-            + PREFIX_NEW_REMARK + "He is very smart ";
+            + PREFIX_NEW_REMARK + "He is very smart "
+            + PREFIX_STATUS + "NON_URGENT";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";

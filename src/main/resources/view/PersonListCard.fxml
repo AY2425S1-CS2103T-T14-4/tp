@@ -28,7 +28,7 @@
         </Label>
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <FlowPane fx:id="assignedTier" />
+      <FlowPane fx:id="assignedStatusAndTier" />
       <VBox fx:id="cardFields" alignment="CENTER_LEFT" spacing="0" minHeight="100" VBox.vgrow="ALWAYS" />
       <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
     </VBox>

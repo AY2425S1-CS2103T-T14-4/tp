@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.CommandCommons;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Income;
@@ -12,6 +13,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.status.Status;
 import seedu.address.model.tier.Tier;
 
 /**
@@ -29,6 +31,7 @@ class JsonAdaptedPerson {
     private final String incomeString;
     private final String remark;
     private final JsonAdaptedTier assignedTier;
+    private final JsonAdaptedStatus assignedStatus;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,15 +41,18 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("job") String job, @JsonProperty("income") String incomeString,
                              @JsonProperty("assignedTier") JsonAdaptedTier assignedTier,
-                             @JsonProperty("remark") String remark) {
+                             @JsonProperty("remark") String remark,
+                             @JsonProperty("assignedStatus") JsonAdaptedStatus assignedStatus) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.job = job;
         this.incomeString = incomeString;
-        this.remark = remark;
         this.assignedTier = assignedTier != null ? assignedTier : new JsonAdaptedTier("");
+        this.remark = remark;
+        this.assignedStatus = assignedStatus != null ? assignedStatus
+                : new JsonAdaptedStatus(CommandCommons.DEFAULT_STATUS);
     }
 
     /**
@@ -62,6 +68,10 @@ class JsonAdaptedPerson {
         remark = source.getRemark().value;
         Tier tier = source.getTier();
         assignedTier = tier != null ? new JsonAdaptedTier(tier) : new JsonAdaptedTier("");
+        Status status = source.getStatus();
+        assignedStatus = status != null ? new JsonAdaptedStatus(status)
+                : new JsonAdaptedStatus(CommandCommons.DEFAULT_STATUS);
+
     }
 
     /**
@@ -125,8 +135,12 @@ class JsonAdaptedPerson {
         }
         final Remark modelRemark = new Remark(remark);
 
+        if (assignedStatus == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        }
+        final Status modelStatus = assignedStatus.toModelType();
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelJob,
-                modelIncome, modelTier, modelRemark);
+                modelIncome, modelTier, modelRemark, modelStatus);
     }
 
 }

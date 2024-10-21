@@ -52,7 +52,7 @@ public class PersonUtil {
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getJob().ifPresent(job -> sb.append(PREFIX_JOB).append(job.value).append(" "));
         descriptor.getIncome().ifPresent(income -> sb.append(PREFIX_INCOME).append(income.value).append(" "));
-        descriptor.getTiers().ifPresent(tier -> sb.append(PREFIX_TIER).append(tier.toParsableString()).append(" "));
+        descriptor.getTier().ifPresent(tier -> sb.append(PREFIX_TIER).append(tier.toParsableString()).append(" "));
         descriptor.getNewRemark().ifPresent(newRemark -> sb.append(PREFIX_NEW_REMARK).append(newRemark.value)
                 .append(" "));
         return sb.toString();

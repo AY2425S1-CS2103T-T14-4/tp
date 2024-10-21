@@ -342,29 +342,41 @@
     -fx-background-radius: 0;
 }
 
-#assignedTier {
+#assignedStatusAndTier {
     -fx-hgap: 7;
     -fx-vgap: 3;
 }
 
-#assignedTier .gold-tier {
+#assignedStatusAndTier .gold-tier {
     -fx-background-color: #B59410;
 }
 
-#assignedTier .silver-tier {
+#assignedStatusAndTier .silver-tier {
     -fx-background-color: #71706e;
 }
 
-#assignedTier .bronze-tier {
+#assignedStatusAndTier .bronze-tier {
     -fx-background-color: #804a00;
 }
 
-#assignedTier .reject-tier {
+#assignedStatusAndTier .reject-tier {
     -fx-background-color: #8B0000;
 }
 
-#assignedTier .label {
-    -fx-text-fill: white;
+#assignedStatusAndTier .none-status {
+    -fx-background-color: #009E60;
+}
+
+#assignedStatusAndTier .nonUrgent-status {
+    -fx-background-color: #c46210;
+}
+
+#assignedStatusAndTier .urgent-status {
+    -fx-background-color: #FF2400;
+}
+
+#assignedStatusAndTier .label {
+    -fx-text-fillx: white;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;

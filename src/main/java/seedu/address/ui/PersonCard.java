@@ -7,6 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
+import seedu.address.model.status.Status;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -39,7 +40,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label remark;
     @FXML
-    private FlowPane assignedTier;
+    private FlowPane assignedStatus;
+    @FXML
+    private FlowPane assignedStatusAndTier;
     @FXML
     private VBox cardFields;
     /**
@@ -50,6 +53,7 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         createFields();
+        createStatus();
         createTier();
     }
     private void createFields() {
@@ -78,7 +82,24 @@ public class PersonCard extends UiPart<Region> {
         }
         if (tierLabel != null) {
             // Add the label to the FlowPane
-            assignedTier.getChildren().add(tierLabel);
+            assignedStatusAndTier.getChildren().add(tierLabel);
+        }
+    }
+
+    private void createStatus() {
+        Label statusLabel = new Label(person.getStatus().toParsableString());
+
+        // Apply a different style class based on the status value
+        Status.StatusEnum status = person.getStatus().status;
+        switch (status) {
+        case NONE -> statusLabel.getStyleClass().add("none-status");
+        case NON_URGENT -> statusLabel.getStyleClass().add("nonUrgent-status");
+        case URGENT -> statusLabel.getStyleClass().add("urgent-status");
+        default -> statusLabel = null;
+        }
+        if (statusLabel != null) {
+            assignedStatusAndTier.getChildren().add(statusLabel);
+
         }
     }
 }

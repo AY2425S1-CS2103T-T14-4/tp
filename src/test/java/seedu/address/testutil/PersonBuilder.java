@@ -9,6 +9,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.status.Status;
 import seedu.address.model.tier.Tier;
 
 /**
@@ -22,8 +23,6 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_JOB = "Engineer";
     public static final int DEFAULT_INCOME = 0;
-    public static final String DEFAULT_TIER = CommandCommons.DEFAULT_TIER;
-    public static final String DEFAULT_REMARK = CommandCommons.DEFAULT_REMARK;
 
     private Name name;
     private Phone phone;
@@ -33,6 +32,7 @@ public class PersonBuilder {
     private Income income;
     private Tier tier;
     private Remark remark;
+    private Status status;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,8 +44,9 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         job = new Job(DEFAULT_JOB);
         income = new Income(DEFAULT_INCOME);
-        tier = new Tier(DEFAULT_TIER);
-        remark = new Remark(DEFAULT_REMARK);
+        tier = new Tier(CommandCommons.DEFAULT_TIER);
+        remark = new Remark(CommandCommons.DEFAULT_REMARK);
+        status = new Status(CommandCommons.DEFAULT_STATUS);
     }
 
     /**
@@ -60,6 +61,7 @@ public class PersonBuilder {
         income = personToCopy.getIncome();
         tier = personToCopy.getTier();
         remark = personToCopy.getRemark();
+        status = personToCopy.getStatus();
     }
 
     /**
@@ -129,7 +131,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, job, income, tier, remark);
+        return new Person(name, phone, email, address, job, income, tier, remark, status);
     }
 
 }

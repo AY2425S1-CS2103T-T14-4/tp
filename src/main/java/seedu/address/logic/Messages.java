@@ -52,7 +52,9 @@ public class Messages {
                 .append("; Tier: ")
                 .append(person.getTier())
                 .append("; Remark: ")
-                .append(person.getRemark());
+                .append(person.getRemark())
+                .append("; Status: ")
+                .append(person.getStatus());
         return builder.toString();
     }
 
