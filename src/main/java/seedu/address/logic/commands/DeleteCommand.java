@@ -24,6 +24,11 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_CONFIRMATION = "This will permanently delete this contact. "
+            + "Are you sure you want to execute this command? (y/n)";
+
+    private static final boolean requiresConfirmation = true;
+
 
     private final Index targetIndex;
 
@@ -43,6 +48,14 @@ public class DeleteCommand extends Command {
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+    }
+
+    @Override
+    public CommandResult execute(Model model, Boolean confirmationReceived) throws CommandException {
+        if (confirmationReceived.equals(requiresConfirmation)) {
+            return this.execute(model);
+        }
+        return new CommandResult(MESSAGE_DELETE_CONFIRMATION, false, false, true);
     }
 
     @Override

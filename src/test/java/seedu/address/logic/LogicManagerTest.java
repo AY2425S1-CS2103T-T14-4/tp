@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.Messages.MESSAGE_COMMAND_CANCELLED;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -9,6 +10,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INCOME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.JOB_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.commands.DeleteCommand.MESSAGE_DELETE_CONFIRMATION;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -60,9 +62,22 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_commandExecutionError_throwsCommandException() {
+    public void execute_deleteCommandRequiresConfirmation_displaysDeleteConfirmationMessage()
+            throws CommandException, ParseException {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandSuccess(deleteCommand, MESSAGE_DELETE_CONFIRMATION, model);
+    }
+
+    @Test
+    public void execute_cancelDeleteCommand_success() throws CommandException, ParseException {
+        String[] deleteCommand = {"delete 9", "no"};
+        assertDeleteCommandSuccess(MESSAGE_COMMAND_CANCELLED, model, deleteCommand);
+    }
+
+    @Test
+    public void execute_commandExecutionError_throwsCommandException() throws CommandException, ParseException {
+        String[] deleteCommand = {"delete 9", "y"};
+        assertDeleteCommandFailure(CommandException.class, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, deleteCommand);
     }
 
     @Test
@@ -87,6 +102,25 @@ public class LogicManagerTest {
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
+
+    /**
+     * Executes the command (which requires a confirmation) and confirms that
+     * - the {@code expectedException} is thrown <br>
+     * - the resulting error message is equal to {@code expectedMessage} <br>
+     * @see #assertCommandSuccess(String, String, Model)
+     */
+    private void assertDeleteCommandFailure(Class<? extends Throwable> expectedException, String expectedMessage,
+                                            String... inputCommand) throws CommandException, ParseException {
+        for (int i = 0; i < inputCommand.length; i++) {
+            if (i == inputCommand.length - 1) {
+                assertThrows(expectedException, expectedMessage, () ->
+                        logic.execute(inputCommand[inputCommand.length - 1]));
+            } else {
+                logic.execute(inputCommand[i]);
+            }
+        }
+    }
+
 
     /**
      * Executes the command and confirms that
@@ -172,5 +206,24 @@ public class LogicManagerTest {
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+    }
+
+    /**
+     * Executes the command (which requires a confirmation) and confirms that
+     * - no exceptions are thrown <br>
+     * - the feedback message is equal to {@code expectedMessage} <br>
+     * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     * @see #assertCommandFailure(String, Class, String, Model)
+     */
+    private void assertDeleteCommandSuccess(String expectedMessage, Model expectedModel,
+                                            String... inputCommand) throws CommandException, ParseException {
+        for (int i = 0; i < inputCommand.length; i++) {
+            if (i == inputCommand.length - 1) {
+                CommandResult result = logic.execute(inputCommand[inputCommand.length - 1]);
+                assertEquals(expectedMessage, result.getFeedbackToUser());
+            } else {
+                logic.execute(inputCommand[i]);
+            }
+        }
     }
 }

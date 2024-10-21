@@ -84,4 +84,15 @@ public class AddressBookParser {
         }
     }
 
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param userInput full user input string
+     * @return boolean depending on whether the input is yes/y
+     */
+    public boolean parseConfirmation(String userInput) {
+        userInput = userInput.replace("\n", "").toLowerCase().trim();
+        return userInput.equals("y") || userInput.equals("yes");
+    }
+
 }
