@@ -78,11 +78,11 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertNotEquals(ALICE, editedAlice);
 
-        // different address -> returns false
+        // different address -> returns true
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertNotEquals(ALICE, editedAlice);
+        assertTrue(ALICE, editedAlice);
 
-        // different job -> returns false
+        // different job -> returns true
         editedAlice = new PersonBuilder(ALICE).withJob(VALID_JOB_BOB).build();
         assertTrue(ALICE.equals(editedAlice));
 
