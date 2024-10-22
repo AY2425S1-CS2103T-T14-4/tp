@@ -1,9 +1,12 @@
----
-  layout: default.md
-  title: "User Guide"
-  pageNav: 3
----
+<frontmatter>
+{
+  "title": "User Guide",
+  "pageNav": 3
+}
+</frontmatter>
+
 ![Banner](images/AgentAssistBanner.png) 
+
 # Welcome to the AgentAssist User Guide!
 
 The **AgentAssist User Guide** is here to help you unlock the full potential of **AgentAssist** and take your credit card sales to the next level. This guide offers clear, step-by-step instructions and practical examples to help you get the most out of the application.
@@ -22,38 +25,30 @@ Let’s begin and get you up to speed with AgentAssist!
 1. [Introduction](#1-introduction)
 2. [Important Prerequisites](#2-important-prerequisites)
 3. [Getting Started](#3-getting-started)
-   <details>
-   <summary>Subsections</summary>
-
+   <panel header="Subsections">
    3.1 [Installation](#31-installation)  
    3.2 [Graphical User Interface (GUI) Layout](#32-graphical-user-interface-gui-layout)
-
-   </details>
+   </panel>
 
 4. [Understanding Commands in AgentAssist](#4-understanding-commands-in-agentassist)
-   <details>
-   <summary>Subsections</summary>
+   <panel header="Subsections">
 
    4.1 [Command Structure Overview](#41-command-structure-overview)  
    4.2 [Commands](#42-commands)  
    4.3 [Flags](#43-flags)  
    4.4 [Arguments](#44-arguments)  
    4.5 [Using Commands](#45-using-commands)
-
-   </details>
+   </panel>
 
 5. [Commands](#5-commands)
-   <details>
-   <summary>Subsections</summary>
-
+   <panel header="Subsections">
    5.1 [How to Read Commands](#51-how-to-read-commands)  
    5.2 [Data Modification Commands](#52-data-modification-commands)  
    5.3 [Data Filtering Commands](#53-data-filtering-commands)  
    5.4 [General Commands](#54-general-commands)  
    5.5 [Saving Data](#55-saving-data)  
    5.6 [Modifying the Data File](#56-modifying-the-data-file)
-
-   </details>
+   </panel>
    
 6. [FAQ](#6-faq)
 7. [Known Issues](#7-known-issues)
