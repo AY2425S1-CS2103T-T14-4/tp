@@ -1,6 +1,7 @@
 ---
-layout: page
-title: User Guide
+  layout: default.md
+  title: "User Guide"
+  pageNav: 3
 ---
 ![Banner](images/AgentAssistBanner.png) 
 # Welcome to the AgentAssist User Guide!
@@ -188,7 +189,6 @@ add n/ John Doe e/ john@example.com
 * **Command:** `add` instructs AgentAssist to add a new entry.
 * **Flags:** `n/` and `e/` specify the information type (name and email).
 * **Arguments:** `John Doe` and `john@example.com` are the actual values being input for the respective flags.
-
 
 ## 4.2 Commands
 A command is the action that AgentAssist will perform, such as adding, deleting, or editing a contact. 
@@ -709,6 +709,3 @@ Each credit card tier is visually distinguished in the UI: Gold is marked with a
 | **View Help**              | `help`                                                                                                                       | `help`                                                                                                    |
 | **Exit Application**       | `exit`                                                                                                                       | `exit`                                                                                                    |
 | **Clear All Data**         | `clear`                                                                                                                      | `clear`                                                                                                   |
-
-
-
