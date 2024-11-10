@@ -10,7 +10,7 @@ import seedu.address.model.tier.Tier;
 import seedu.address.model.util.IncomeComparisonOperator;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings (for filtering purposes) in the various *Parser classes.
  */
 public class FilterParserUtil extends ParserUtil {
 
@@ -44,7 +44,7 @@ public class FilterParserUtil extends ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code String}.
+     * Parses a partial {@code String email} into an {@code String}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code email} is an invalid partial email.
@@ -59,7 +59,7 @@ public class FilterParserUtil extends ParserUtil {
     }
 
     /**
-     * Parses a {@code String tier} into a {@code Tier}.
+     * Parses a partial {@code String tier} into a {@code Tier}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tier} is invalid.
