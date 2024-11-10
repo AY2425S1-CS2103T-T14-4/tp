@@ -16,7 +16,6 @@ import seedu.address.model.client.Income;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.tier.Tier;
-import seedu.address.model.util.IncomeComparisonOperator;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";

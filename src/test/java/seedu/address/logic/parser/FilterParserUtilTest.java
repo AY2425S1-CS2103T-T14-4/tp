@@ -1,21 +1,19 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.client.Address;
-import seedu.address.model.client.Email;
-import seedu.address.model.client.Income;
-import seedu.address.model.client.Name;
-import seedu.address.model.status.Status;
-import seedu.address.model.tier.Tier;
-import seedu.address.model.util.IncomeComparisonOperator;
-
-import java.math.BigInteger;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.parser.FilterParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+
+import java.math.BigInteger;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.client.Address;
+import seedu.address.model.client.Income;
+import seedu.address.model.client.Name;
+import seedu.address.model.util.IncomeComparisonOperator;
 
 public class FilterParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
