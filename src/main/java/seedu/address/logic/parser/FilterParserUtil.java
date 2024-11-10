@@ -1,14 +1,13 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Phone;
 import seedu.address.model.status.Status;
 import seedu.address.model.tier.Tier;
 import seedu.address.model.util.IncomeComparisonOperator;
-
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
