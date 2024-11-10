@@ -25,8 +25,6 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_INCOME = "one thousand";
     private static final String INVALID_TIER = "#friend";
-    private static final String INVALID_INCOME_COMPARISON_OPERATOR_1 = "==";
-    private static final String INVALID_INCOME_COMPARISON_OPERATOR_2 = "!";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "91234567";
@@ -35,9 +33,6 @@ public class ParserUtilTest {
     private static final String VALID_INCOME = "1000";
     private static final String VALID_TIER_1 = "BRONZE";
     private static final String VALID_TIER_2 = "SILVER";
-    private static final String VALID_INCOME_COMPARISON_OPERATOR_EQUAL = ">";
-    private static final String VALID_INCOME_COMPARISON_OPERATOR_GREATER_THAN = ">";
-    private static final String VALID_INCOME_COMPARISON_OPERATOR_LESS_THAN = "<";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -198,54 +193,4 @@ public class ParserUtilTest {
         Tier expectedTier = new Tier(VALID_TIER_1);
         assertEquals(expectedTier, ParserUtil.parseTier(tierWithWhitespace));
     }
-
-    @Test
-    public void parseIncomeComparisonOperator_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseIncomeComparisonOperator(null));
-    }
-
-    @Test
-    public void parseIncomeComparisonOperator_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () ->
-                ParserUtil.parseIncomeComparisonOperator(INVALID_INCOME_COMPARISON_OPERATOR_1));
-        assertThrows(ParseException.class, () ->
-                ParserUtil.parseIncomeComparisonOperator(INVALID_INCOME_COMPARISON_OPERATOR_2));
-    }
-
-    @Test
-    public void parseIncomeComparisonOperator_validValueWithoutWhitespace_returnsIncomeComparisonOperator()
-            throws Exception {
-        IncomeComparisonOperator equalOperator = new IncomeComparisonOperator(
-                VALID_INCOME_COMPARISON_OPERATOR_EQUAL);
-        IncomeComparisonOperator greaterThanOperator = new IncomeComparisonOperator(
-                VALID_INCOME_COMPARISON_OPERATOR_GREATER_THAN);
-        IncomeComparisonOperator lessThanOperator = new IncomeComparisonOperator(
-                VALID_INCOME_COMPARISON_OPERATOR_LESS_THAN);
-
-        assertEquals(equalOperator, ParserUtil.parseIncomeComparisonOperator(
-                VALID_INCOME_COMPARISON_OPERATOR_EQUAL));
-        assertEquals(greaterThanOperator, ParserUtil.parseIncomeComparisonOperator(
-                VALID_INCOME_COMPARISON_OPERATOR_GREATER_THAN));
-        assertEquals(lessThanOperator, ParserUtil.parseIncomeComparisonOperator(
-                VALID_INCOME_COMPARISON_OPERATOR_LESS_THAN));
-    }
-
-    @Test
-    public void parseIncomeComparisonOperator_validValueWithWhitespace_returnsIncomeComparisonOperator()
-            throws Exception {
-        IncomeComparisonOperator equalOperator = new IncomeComparisonOperator(
-                VALID_INCOME_COMPARISON_OPERATOR_EQUAL);
-        IncomeComparisonOperator greaterThanOperator = new IncomeComparisonOperator(
-                VALID_INCOME_COMPARISON_OPERATOR_GREATER_THAN);
-        IncomeComparisonOperator lessThanOperator = new IncomeComparisonOperator(
-                VALID_INCOME_COMPARISON_OPERATOR_LESS_THAN);
-
-        assertEquals(equalOperator, ParserUtil.parseIncomeComparisonOperator(
-                WHITESPACE + VALID_INCOME_COMPARISON_OPERATOR_EQUAL + WHITESPACE));
-        assertEquals(greaterThanOperator, ParserUtil.parseIncomeComparisonOperator(
-                WHITESPACE + VALID_INCOME_COMPARISON_OPERATOR_GREATER_THAN + WHITESPACE));
-        assertEquals(lessThanOperator, ParserUtil.parseIncomeComparisonOperator(
-                WHITESPACE + VALID_INCOME_COMPARISON_OPERATOR_LESS_THAN + WHITESPACE));
-    }
-
 }
