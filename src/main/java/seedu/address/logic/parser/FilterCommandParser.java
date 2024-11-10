@@ -147,13 +147,13 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             predicates.add(new RemarkContainsSubstringPredicate(substring));
         }
         if (argMultimap.getValue(PREFIX_TIER).isPresent()) {
-            String substring = parseFieldForFilterCommand(() -> parseField(() -> FilterParserUtil.parseTier(
-                    argMultimap.getValue(PREFIX_TIER).get()).getValue(), errors));
+            String substring = parseFieldForFilterCommand(() -> parseField(() -> FilterParserUtil.parsePartialTier(
+                    argMultimap.getValue(PREFIX_TIER).get()), errors));
             predicates.add(new TierStartsWithSubstringPredicate(substring));
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            String substring = parseFieldForFilterCommand(() -> parseField(() -> FilterParserUtil.parseStatus(
-                    argMultimap.getValue(PREFIX_STATUS).get()).getValue(), errors));
+            String substring = parseFieldForFilterCommand(() -> parseField(() -> FilterParserUtil.parsePartialStatus(
+                    argMultimap.getValue(PREFIX_STATUS).get()), errors));
             predicates.add(new StatusStartsWithSubstringPredicate(substring));
         }
         if (!errors.isEmpty()) {

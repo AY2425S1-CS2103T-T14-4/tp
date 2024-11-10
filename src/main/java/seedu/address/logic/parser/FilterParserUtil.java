@@ -59,33 +59,33 @@ public class FilterParserUtil extends ParserUtil {
     }
 
     /**
-     * Parses a partial {@code String tier} into a {@code Tier}.
+     * Parses a partial {@code String tier} into a {@code String}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tier} is invalid.
      */
-    public static Tier parseTier(String tier) throws ParseException {
+    public static String parsePartialTier(String tier) throws ParseException {
         requireNonNull(tier);
         String trimmedTier = tier.trim();
         if (trimmedTier.isEmpty()) {
             throw new ParseException(TIER_NO_VALUE_PROVIDED_MESSAGE);
         }
-        return new Tier(trimmedTier);
+        return trimmedTier;
     }
 
     /**
-     * Parses a {@code String status} into a {@code Status}.
+     * Parses a {@code String status} into a {@code String}.
      * Leading and trailing whitespaces are trimmed.
      *
      * @throws ParseException if the given {@code status} is invalid.
      */
-    public static Status parseStatus(String status) throws ParseException {
+    public static String parsePartialStatus(String status) throws ParseException {
         requireNonNull(status);
         String trimmedStatus = status.trim();
         if (trimmedStatus.isEmpty()) {
             throw new ParseException(STATUS_NO_VALUE_PROVIDED_MESSAGE);
         }
-        return new Status(trimmedStatus);
+        return trimmedStatus;
     }
 
     /**
