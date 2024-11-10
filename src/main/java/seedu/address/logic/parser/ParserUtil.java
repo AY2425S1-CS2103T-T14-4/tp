@@ -16,7 +16,6 @@ import seedu.address.model.client.Phone;
 import seedu.address.model.client.Remark;
 import seedu.address.model.status.Status;
 import seedu.address.model.tier.Tier;
-import seedu.address.model.util.IncomeComparisonOperator;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -188,20 +187,4 @@ public class ParserUtil {
         }
         return new Status(trimmedStatus);
     }
-
-    /**
-     * Parses a {@code String operator} into a {@code IncomeComparisonOperator}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code operator} is invalid.
-     */
-    public static IncomeComparisonOperator parseIncomeComparisonOperator(String operator) throws ParseException {
-        requireNonNull(operator);
-        String trimmedOperator = operator.trim();
-        if (!IncomeComparisonOperator.isValidComparisonOperator(trimmedOperator)) {
-            throw new ParseException(IncomeComparisonOperator.MESSAGE_CONSTRAINTS);
-        }
-        return new IncomeComparisonOperator(trimmedOperator);
-    }
-
 }

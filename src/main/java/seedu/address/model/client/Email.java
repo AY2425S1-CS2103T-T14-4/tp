@@ -30,6 +30,7 @@ public class Email {
     private static final String DOMAIN_LAST_PART_REGEX = "(" + DOMAIN_PART_REGEX + "){2,}$"; // At least two chars
     private static final String DOMAIN_REGEX = "(" + DOMAIN_PART_REGEX + "\\.)*" + DOMAIN_LAST_PART_REGEX;
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
+    private static final String PARTIAL_EMAIL_REGEX = "[\\w+" + SPECIAL_CHARACTERS + "]*@?[\\w\\.-]*";
 
     public final String value;
 
@@ -49,6 +50,19 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid partial email for filtering.
+     * - If the input matches the full email regex, it performs the full validation.
+     * - If the input is shorter than a full email, it checks for valid partial segments.
+     */
+    public static boolean isValidPartialEmail(String test) {
+        if (isValidEmail(test)) {
+            return true; // Full email validation
+        } else {
+            return test.matches(PARTIAL_EMAIL_REGEX);
+        }
     }
 
     @Override
