@@ -22,8 +22,13 @@ public class FilterParserUtil extends ParserUtil {
             + "to filter by.\n"
             + "Please specify a status label to filter by, such as 'Urgent', 'Non_Urgent', or 'NA'.\n"
             + "To filter for clients without a visible status label beside their name, use: filter s/ NA";
-    public static final String INVALID_PARTIAL_PHONE_NUMBER_MESSAGE =
-            "When using the filter command, phone number input must contain only numeric characters.";
+    public static final String INVALID_PARTIAL_PHONE_MESSAGE =
+            "When using the filter command, the phone number input:\n"
+            + "- Must contain only numeric digits\n"
+            + "- Numbers with fewer than 8 digits are allowed\n"
+            + "- Numbers longer than 8 digits are not allowed\n"
+            + "- If exactly 8 digits, the number must start with 6, 8, or 9";
+
     public static final String INVALID_PARTIAL_EMAIL_MESSAGE =
             "When using the filter command, the email input may be a full or partial email address and must "
                     + "contain only alphanumeric characters, the symbols '+', '_', '.', or '-', and an optional '@'.";
@@ -38,7 +43,7 @@ public class FilterParserUtil extends ParserUtil {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPartialPhone(trimmedPhone)) {
-            throw new ParseException(INVALID_PARTIAL_PHONE_NUMBER_MESSAGE);
+            throw new ParseException(INVALID_PARTIAL_PHONE_MESSAGE);
         }
         return trimmedPhone;
     }
