@@ -216,6 +216,12 @@ To learn more about how to use commands in AgentAssist, proceed to the next sect
 
 The true power of AgentAssist lies in efficiently using commands. Before diving into specific commands, let’s break down the basic structure of a command.
 
+### Quick Guide: Command Essentials
+Commands are the text that you input into the Command Box. A valid command in AgentAssist will start with a command, followed by flags and arguments.
+- **Example:** For `edit 12 a/<ADDRESS>`, `edit` is the command, `a/` is the flag for the `Address` field, and `<ADDRESS>` is the argument supplied for the field.
+
+For a more detailed breakdown of how commands work, proceed to the next section.
+
 ## 4.1 Command Structure Overview
 Each command in AgentAssist consists of three key components: the **command**, **flag(s)**, and **argument(s)**.
 
